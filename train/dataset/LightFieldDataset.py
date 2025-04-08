@@ -5,13 +5,9 @@ from torchvision.io import read_image
 class LightFieldDataSet(Dataset):
     def __init__(self, args):
         self.video = [os.path.join(args.data_path, x) for x in sorted(os.listdir(args.data_path))]
-        # Resize the input video and center crop
         self.grid_size = args.grid_size
         self.crop_list, self.resize_list = args.crop_list, args.resize_list
-        # import pdb; pdb.set_trace; from IPython import embed; embed()     
-        first_frame = self.img_transform(self.img_load(0))
-        self.final_size = first_frame.size(-2) * first_frame.size(-1)
-    
+
 
     def img_load(self, idx):
         if isinstance(self.video, list):
